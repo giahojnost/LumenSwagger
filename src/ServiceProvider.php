@@ -25,7 +25,7 @@ class ServiceProvider extends BaseProvider
     public function boot()
     {
         $viewPath = __DIR__.'/../resources/views';
-        $this->loadViewsFrom($viewPath, 'swagger-lume');
+        $this->loadViewsFrom($viewPath, 'lumen-swagger');
 
         $this->app->router->group(['namespace' => 'LumenSwagger'], function ($route) {
             require __DIR__.'/routes.php';
@@ -39,30 +39,30 @@ class ServiceProvider extends BaseProvider
      */
     public function register()
     {
-        $configPath = __DIR__.'/../config/swagger-lume.php';
-        $this->mergeConfigFrom($configPath, 'swagger-lume');
+        $configPath = __DIR__.'/../config/lumen-swagger.php';
+        $this->mergeConfigFrom($configPath, 'lumen-swagger');
 
-        $this->app->singleton('command.swagger-lume.publish', function () {
+        $this->app->singleton('command.lumen-swagger.publish', function () {
             return new PublishCommand();
         });
 
-        $this->app->singleton('command.swagger-lume.publish-config', function () {
+        $this->app->singleton('command.lumen-swagger.publish-config', function () {
             return new PublishConfigCommand();
         });
 
-        $this->app->singleton('command.swagger-lume.publish-views', function () {
+        $this->app->singleton('command.lumen-swagger.publish-views', function () {
             return new PublishViewsCommand();
         });
 
-        $this->app->singleton('command.swagger-lume.generate', function () {
+        $this->app->singleton('command.lumen-swagger.generate', function () {
             return new GenerateDocsCommand();
         });
 
         $this->commands(
-            'command.swagger-lume.publish',
-            'command.swagger-lume.publish-config',
-            'command.swagger-lume.publish-views',
-            'command.swagger-lume.generate'
+            'command.lumen-swagger.publish',
+            'command.lumen-swagger.publish-config',
+            'command.lumen-swagger.publish-views',
+            'command.lumen-swagger.generate'
         );
     }
 }
