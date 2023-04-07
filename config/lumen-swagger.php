@@ -7,7 +7,7 @@ return [
         | Edit to set the api's title
         |--------------------------------------------------------------------------
          */
-        'title' => 'Swagger Lume API',
+        'title' => 'Lumen Swagger API',
     ],
 
     'routes' => [
@@ -93,7 +93,7 @@ return [
         | Absolute path to directory where to export views
         |--------------------------------------------------------------------------
          */
-        'views' => base_path('resources/views/vendor/swagger-lume'),
+        'views' => base_path('resources/views/vendor/lumen-swagger'),
     ],
 
     /*

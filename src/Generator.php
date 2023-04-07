@@ -8,30 +8,30 @@ class Generator
 {
     public static function generateDocs()
     {
-        $appDir = config('swagger-lume.paths.annotations');
-        $docDir = config('swagger-lume.paths.docs');
+        $appDir = config('lumen-swagger.paths.annotations');
+        $docDir = config('lumen-swagger.paths.docs');
         if (! File::exists($docDir) || is_writable($docDir)) {
             // delete all existing documentation
             if (File::exists($docDir)) {
                 File::deleteDirectory($docDir);
             }
 
-            self::defineConstants(config('swagger-lume.constants') ?: []);
+            self::defineConstants(config('lumen-swagger.constants') ?: []);
 
             File::makeDirectory($docDir);
-            $excludeDirs = config('swagger-lume.paths.excludes');
+            $excludeDirs = config('lumen-swagger.paths.excludes');
 
-            if (version_compare(config('swagger-lume.swagger_version'), '3.0', '>=')) {
+            if (version_compare(config('lumen-swagger.swagger_version'), '3.0', '>=')) {
                 $swagger = \OpenApi\scan($appDir, ['exclude' => $excludeDirs]);
             } else {
                 $swagger = \Swagger\scan($appDir, ['exclude' => $excludeDirs]);
             }
 
-            if (config('swagger-lume.paths.base') !== null) {
-                $swagger->basePath = config('swagger-lume.paths.base');
+            if (config('lumen-swagger.paths.base') !== null) {
+                $swagger->basePath = config('lumen-swagger.paths.base');
             }
 
-            $filename = $docDir.'/'.config('swagger-lume.paths.docs_json');
+            $filename = $docDir.'/'.config('lumen-swagger.paths.docs_json');
             $swagger->saveAs($filename);
 
             $security = new SecurityDefinitions();

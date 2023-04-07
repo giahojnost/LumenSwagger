@@ -13,14 +13,14 @@ class SecurityDefinitions
      */
     public function generate($filename)
     {
-        $securityConfig = config('swagger-lume.security', []);
+        $securityConfig = config('lumen-swagger.security', []);
 
         if (is_array($securityConfig) && ! empty($securityConfig)) {
             $documentation = collect(
                 json_decode(file_get_contents($filename))
             );
 
-            $openApi3 = version_compare(config('swagger-lume.swagger_version'), '3.0', '>=');
+            $openApi3 = version_compare(config('lumen-swagger.swagger_version'), '3.0', '>=');
 
             $documentation = $openApi3 ?
                 $this->generateOpenApi($documentation, $securityConfig) :
