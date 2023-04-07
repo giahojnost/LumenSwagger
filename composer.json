@@ -1,6 +1,6 @@
 {
-  "name": "giahojnost/lume-swagger",
-  "description": "OpenApi or Swagger integration to Lumen, Retouched based on Darius Matulionis SwaggerLume",
+  "name": "giahojnost/lumen-swagger",
+  "description": "OpenApi or Swagger integration to Lumen, Retouched based on DarkaOnLine/SwaggerLume",
   "keywords": [
     "lumen",
     "laravel",
